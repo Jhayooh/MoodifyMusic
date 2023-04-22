@@ -6,13 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/kiran_ck_i1ex8enx3ri_unsplash1" />
 
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Music"
+        android:textColor="#1B1C20"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="150dp" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginEnd="78dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Moodify"
+        android:textColor="#D45B6A"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="104dp" />
+
+    <TextView
+        android:id="@+id/startcontent"
+        android:layout_width="160dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/inter_extralight"
+        android:text="Transform your mood with music"
+        android:textAlignment="textEnd"
+        android:textColor="#1B1C20"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <TextView
+        android:id="@+id/getstarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:fontFamily="@font/inter"
+        android:text="Get Started >>"
+        android:textColor="#1B1C20"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="541dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
