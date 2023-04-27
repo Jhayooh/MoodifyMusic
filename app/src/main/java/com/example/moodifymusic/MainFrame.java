@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainFrame extends AppCompatActivity {
@@ -47,5 +50,17 @@ public class MainFrame extends AppCompatActivity {
                 return false;
             }
         });
+
+        FloatingActionButton fab = findViewById(R.id.music_fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MusicPlayingFrame.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
