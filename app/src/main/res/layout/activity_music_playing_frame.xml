@@ -32,12 +32,13 @@
         app:srcCompat="@drawable/hamburgermenu" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/backbtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="70dp"
+        android:onClick="back_btn"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -92,8 +93,10 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="110dp"
         android:layout_marginEnd="33dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/circle"
         android:src="@drawable/skipbackward"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pause"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
@@ -104,9 +107,11 @@
         android:layout_height="65dp"
         android:layout_marginStart="148dp"
         android:layout_marginTop="108dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/circle"
         android:scaleType="centerInside"
         android:src="@drawable/baseline_pause_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
 
@@ -117,9 +122,11 @@
         android:layout_marginStart="33dp"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="45dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/circle"
         android:scaleType="centerInside"
         android:src="@drawable/skipforward"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pause"
         app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
