@@ -60,18 +60,6 @@ public class HomeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            mRecyclerView = mRecyclerView.findViewById(R.id.recyclerview);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-            // Initialize the ArrayList that will contain the data.
-            mMusicData = new ArrayList<>();
-
-            // Initialize the adapter and set it to the RecyclerView.
-            mAdapter = new MusicItemAdapter(this.getContext(), mMusicData);
-            mRecyclerView.setAdapter(mAdapter);
-
-            initializeData();
         }
     }
 
@@ -88,7 +76,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        mRecyclerView = view.findViewById(R.id.recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Initialize the ArrayList that will contain the data.
+        mMusicData = new ArrayList<>();
+
+        // Initialize the adapter and set it to the RecyclerView.
+        mAdapter = new MusicItemAdapter(this.getContext(), mMusicData);
+        mRecyclerView.setAdapter(mAdapter);
+
+        initializeData();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return view;
     }
 }
