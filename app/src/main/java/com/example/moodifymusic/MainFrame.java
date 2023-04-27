@@ -25,7 +25,7 @@ public class MainFrame extends AppCompatActivity {
         setContentView(R.layout.activity_main_frame);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, search).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, home).commit();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 
             @Override
