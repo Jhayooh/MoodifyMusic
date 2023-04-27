@@ -3,10 +3,14 @@ package com.example.moodifymusic;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    private RecyclerView mRecyclerView;
+    private ArrayList<Music> mMusicData;
+    private MusicItemAdapter mAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,7 +60,29 @@ public class HomeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            mRecyclerView = mRecyclerView.findViewById(R.id.recyclerview);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+            // Initialize the ArrayList that will contain the data.
+            mMusicData = new ArrayList<>();
+
+            // Initialize the adapter and set it to the RecyclerView.
+            mAdapter = new MusicItemAdapter(this.getContext(), mMusicData);
+            mRecyclerView.setAdapter(mAdapter);
+
+            initializeData();
         }
+    }
+
+    private void initializeData() {
+        String[] mTitleList = getResources().getStringArray(R.array.music_title);
+        String[] mAuthorList = getResources().getStringArray(R.array.music_author);
+        mMusicData.clear();
+        for(int i=0; i<mTitleList.length; i++){
+            mMusicData.add(new Music(mTitleList[i], mAuthorList[i]));
+        }
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
