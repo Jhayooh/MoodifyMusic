@@ -2,6 +2,7 @@
     <string name="app_name">Moodify Music</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bg_img">background image</string>
 
     <string-array name="music_title">
         <item>The Idea of Her</item>
