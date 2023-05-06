@@ -55,7 +55,7 @@
         android:shadowDy="3"
         android:shadowRadius="4"
         android:text="Moodify"
-        android:textColor="#2E5492"
+        android:textColor="@color/primary"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
