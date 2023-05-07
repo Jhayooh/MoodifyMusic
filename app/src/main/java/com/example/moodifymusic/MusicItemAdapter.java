@@ -62,9 +62,8 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
         @Override
         public void onClick(View view) {
             Music currentmusic = musicItemData.get(getAdapterPosition());
-            Intent intentMusicPlaying = new Intent(context, MusicPlayingFrame.class);
+            Intent intentMusicPlaying = MainFrame.getMyIntentMusicPlaying.getMyIntent(context);
             intentMusicPlaying.putExtra("audio", currentmusic.getAudio());
-
             context.startActivity(intentMusicPlaying);
         }
     }
