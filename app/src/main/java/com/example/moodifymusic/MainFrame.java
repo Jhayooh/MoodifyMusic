@@ -5,8 +5,6 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -18,15 +16,9 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.ktx.Firebase;
 
 import java.io.IOException;
-import java.net.URI;
 
 public class MainFrame extends AppCompatActivity {
 
@@ -69,10 +61,7 @@ public class MainFrame extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fab = findViewById(R.id.music_fab);
-
-        MediaPlayer mediaplayer = new MediaPlayer();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +77,7 @@ public class MainFrame extends AppCompatActivity {
         }
 
         try {
-            mediaPlayer.setDataSource("https://firebasestorage.googleapis.com/v0/b/moodify-music.appspot.com/o/itzy%20not%20shy.mp3?alt=media&token=0570ed5f-3bb2-48da-bc26-e01228fb6ac5");
+            mediaPlayer.setDataSource("https://firebasestorage.googleapis.com/v0/b/moodify-music.appspot.com/o/1%2Fitzy%20not%20shy.mp3?alt=media&token=7bea0f0a-6d2e-4e42-99af-4c3541c49009");
 
             // Set the audio attributes for playback
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
