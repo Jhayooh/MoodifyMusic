@@ -1,16 +1,27 @@
 package com.example.moodifymusic;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +31,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private ArrayList<Music> mMusicData;
+    private List<Music> mMusicData;
     private MusicItemAdapter mAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,13 +76,23 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeData() {
-        String[] mTitleList = getResources().getStringArray(R.array.music_title);
-        String[] mAuthorList = getResources().getStringArray(R.array.music_author);
-        mMusicData.clear();
-        for(int i=0; i<mTitleList.length; i++){
-            mMusicData.add(new Music(mTitleList[i], mAuthorList[i]));
-        }
-        mAdapter.notifyDataSetChanged();
+        DatabaseReference dbreff = FirebaseDatabase.getInstance().getReference("Music");
+        dbreff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mMusicData.clear();
+                for (DataSnapshot musicSnapshot : snapshot.getChildren()) {
+                    Music music = musicSnapshot.getValue(Music.class);
+                    mMusicData.add(music);
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -83,9 +104,8 @@ public class HomeFragment extends Fragment {
 
         // Initialize the ArrayList that will contain the data.
         mMusicData = new ArrayList<>();
-
         // Initialize the adapter and set it to the RecyclerView.
-        mAdapter = new MusicItemAdapter(this.getContext(), mMusicData);
+        mAdapter = new MusicItemAdapter(this.getContext(), (ArrayList<Music>) mMusicData);
         mRecyclerView.setAdapter(mAdapter);
 
         initializeData();
