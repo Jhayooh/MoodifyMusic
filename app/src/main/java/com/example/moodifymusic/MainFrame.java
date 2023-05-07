@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
@@ -22,6 +24,7 @@ import java.io.IOException;
 
 public class MainFrame extends AppCompatActivity {
 
+    private Intent myIntentMusicPlaying;
     DatabaseReference dbreff;
 
     String link;
@@ -30,6 +33,18 @@ public class MainFrame extends AppCompatActivity {
     HomeFragment home = new HomeFragment();
     SearchFragment search = new SearchFragment();
     PlaylistFragment playlist = new PlaylistFragment();
+
+    public static class getMyIntentMusicPlaying {
+        private static Intent intent = new Intent();
+
+        private getMyIntentMusicPlaying(){
+
+        }
+        public static Intent getMyIntent(Context context){
+            intent = new Intent(context, MusicPlayingFrame.class);
+            return intent;
+        }
+    }
 
     public static class myMediaPlayer{
         private static MediaPlayer mediaPlayer;
@@ -40,7 +55,6 @@ public class MainFrame extends AppCompatActivity {
             if (mediaPlayer == null) {
                 mediaPlayer = new MediaPlayer();
             }
-            mediaPlayer.reset();
             return mediaPlayer;
         }
     }
@@ -78,6 +92,7 @@ public class MainFrame extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getApplicationContext().startActivity(getMyIntentMusicPlaying.getMyIntent(getApplicationContext()));
             }
         });
     }
