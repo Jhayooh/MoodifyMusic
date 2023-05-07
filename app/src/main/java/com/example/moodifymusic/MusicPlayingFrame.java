@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import com.example.moodifymusic.MainFrame;
 
 import java.io.IOException;
 
@@ -20,18 +21,16 @@ public class MusicPlayingFrame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_playing_frame);
+        mediaPlayer = MainFrame.myMediaPlayer.getInstance();
         playAudio(getIntent().getStringExtra("audio"));
+
+
     }
     public void back_btn(View view) {
         finish();
     }
 
     private void playAudio(String audioLink) {
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        } else {
-            mediaPlayer.reset();
-        }
 
         try {
             mediaPlayer.setDataSource(audioLink);

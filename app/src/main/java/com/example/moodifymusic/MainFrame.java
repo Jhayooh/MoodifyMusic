@@ -30,7 +30,20 @@ public class MainFrame extends AppCompatActivity {
     HomeFragment home = new HomeFragment();
     SearchFragment search = new SearchFragment();
     PlaylistFragment playlist = new PlaylistFragment();
-    private MediaPlayer mediaPlayer;
+
+    public static class myMediaPlayer{
+        private static MediaPlayer mediaPlayer;
+        private myMediaPlayer(){
+            
+        }
+        public static synchronized MediaPlayer getInstance() {
+            if (mediaPlayer == null) {
+                mediaPlayer = new MediaPlayer();
+            }
+            mediaPlayer.reset();
+            return mediaPlayer;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
