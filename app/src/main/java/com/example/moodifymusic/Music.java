@@ -19,7 +19,7 @@ public class Music {
     }
 
     public String getTitle(){return title;}
-    public String getAuthor(){return artist;}
+    public String getArtist(){return artist;}
     public String getImage(){
         return image;
     }
