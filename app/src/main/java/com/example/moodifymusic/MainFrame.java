@@ -71,31 +71,16 @@ public class MainFrame extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.music_fab);
-        dbreff = FirebaseDatabase.getInstance().getReference().child("Musics").child("music1");
+
         MediaPlayer mediaplayer = new MediaPlayer();
-        dbreff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                link = snapshot.child("link").getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        MediaPlayer mediaPlayer = new MediaPlayer();
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playAudioFromStorage();
+                playAudio();
             }
         });
-
-
     }
-    private void playAudioFromStorage() {
+    private void playAudio() {
         if (mediaPlayer == null) {
             mediaPlayer = new MediaPlayer();
         } else {
