@@ -65,36 +65,8 @@ public class MainFrame extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playAudio();
             }
         });
     }
-    private void playAudio() {
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        } else {
-            mediaPlayer.reset();
-        }
 
-        try {
-            mediaPlayer.setDataSource("https://firebasestorage.googleapis.com/v0/b/moodify-music.appspot.com/o/1%2Fitzy%20not%20shy.mp3?alt=media&token=7bea0f0a-6d2e-4e42-99af-4c3541c49009");
-
-            // Set the audio attributes for playback
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build();
-            mediaPlayer.setAudioAttributes(audioAttributes);
-
-            mediaPlayer.prepareAsync();
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mediaPlayer.start();
-                }
-            });
-        } catch (IOException e) {
-            Log.e(TAG, "Error setting data source: " + e.getMessage());
-        }
-    }
 }
