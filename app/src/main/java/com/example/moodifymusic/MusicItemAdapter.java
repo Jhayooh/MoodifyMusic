@@ -1,10 +1,12 @@
 package com.example.moodifymusic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.example.moodifymusic.MainFrame;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +40,7 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
         return musicItemData.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTitleText;
         private TextView mAuthorText;
@@ -48,11 +50,22 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
 
             mTitleText = itemView.findViewById(R.id.music_title);
             mAuthorText = itemView.findViewById(R.id.music_artist);
+
+            itemView.setOnClickListener(this);
         }
         void bindTo(Music currentMusic){
             mTitleText.setText(currentMusic.getTitle());
-            mAuthorText.setText(currentMusic.getAuthor());
+            mAuthorText.setText(currentMusic.getArtist());
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            Music currentmusic = musicItemData.get(getAdapterPosition());
+            Intent intentMusicPlaying = new Intent(context, MusicPlayingFrame.class);
+            intentMusicPlaying.putExtra("audio", currentmusic.getAudio());
+
+            context.startActivity(intentMusicPlaying);
         }
     }
 }
