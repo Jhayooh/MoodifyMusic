@@ -66,13 +66,9 @@
         android:layout_width="160dp"
         android:layout_height="54dp"
         android:fontFamily="@font/inter_light"
-        android:shadowColor="#FFFFFF"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
         android:text="Transform your mood with music"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/secondary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +89,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startcontent"
-        app:layout_constraintVertical_bias="0.697" />
+        android:layout_marginBottom="72dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
