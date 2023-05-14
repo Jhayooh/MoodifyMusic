@@ -3,6 +3,8 @@ package com.example.moodifymusic;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.TextView;
  */
 public class SearchFragment extends Fragment {
     private TextView textView;
+    private RecyclerView sRecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +64,8 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        sRecyclerView = view.findViewById(R.id.recyclerviewsearch);
+        sRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         // Inflate the layout for this fragment
         return view;
     }
