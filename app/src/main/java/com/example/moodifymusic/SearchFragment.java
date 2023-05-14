@@ -3,6 +3,8 @@ package com.example.moodifymusic;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,17 +23,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment{
     private TextView textView;
     private List<Mood> mMoodData;
     private MoodAdapter moodAdapter;
     private RecyclerView moodRecyclerView;
+    private SearchView Searchview;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,6 +71,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -79,6 +85,21 @@ public class SearchFragment extends Fragment {
         moodRecyclerView = view.findViewById(R.id.recyclerviewsearch);
         moodRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
+        Searchview = view.findViewById(R.id.searchView);
+        Searchview.clearFocus();
+        Searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filteredList(newText);
+                return false;
+            }
+        });
+
         int spacingInPixels = 10;
         moodRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
         // Inflate the layout for this fragment
@@ -87,6 +108,22 @@ public class SearchFragment extends Fragment {
         moodRecyclerView.setAdapter(moodAdapter);
         initializeData();
         return view;
+    }
+
+    private void filteredList(String text) {
+        ArrayList<Mood> filteredList = new ArrayList<>();
+        for (Mood mood : mMoodData){
+            if (mood.getMood().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(mood);
+            }
+        }
+
+        if (filteredList.isEmpty()){
+
+        }
+        else{
+            moodAdapter.setFilteredList(filteredList);
+        }
     }
 
     private void initializeData() {

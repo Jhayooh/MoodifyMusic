@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -34,19 +35,17 @@
             android:layout_marginBottom="24dp"/>
     </RelativeLayout>
 
-    <EditText
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
-        android:layout_height="34dp"
-        android:id="@+id/search_bar"
-        android:layout_below="@+id/head_bar"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:padding="8dp"
-        android:textSize="16sp"
-        android:hint="@string/search_hint"
-        android:background="@drawable/search_bg" />
+        android:layout_margin="8dp"
+        app:queryHint="Search Mood..."
+        android:layout_below="@id/head_bar"
+        android:background="@drawable/searchbg"
+        app:iconifiedByDefault="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewsearch"
@@ -54,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/searchView"
         />
 
 </RelativeLayout>
