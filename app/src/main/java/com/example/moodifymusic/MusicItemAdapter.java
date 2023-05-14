@@ -2,9 +2,11 @@ package com.example.moodifymusic;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.moodifymusic.MainFrame;
 
@@ -44,27 +46,30 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
 
         private TextView mTitleText;
         private TextView mAuthorText;
-
+        private ImageView mImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTitleText = itemView.findViewById(R.id.music_title);
             mAuthorText = itemView.findViewById(R.id.music_artist);
+            mImage = itemView.findViewById(R.id.music_image);
 
             itemView.setOnClickListener(this);
         }
         void bindTo(Music currentMusic){
+            Music currentmusic = musicItemData.get(getAdapterPosition());
             mTitleText.setText(currentMusic.getTitle());
             mAuthorText.setText(currentMusic.getArtist());
-
+            if (currentmusic.getImage() != null ){
+                mImage.setImageURI(Uri.parse(currentmusic.getImage()));
+            }
         }
 
         @Override
         public void onClick(View view) {
             Music currentmusic = musicItemData.get(getAdapterPosition());
-            Intent intentMusicPlaying = new Intent(context, MusicPlayingFrame.class);
+            Intent intentMusicPlaying = MainFrame.getMyIntentMusicPlaying.getMyIntent(context);
             intentMusicPlaying.putExtra("audio", currentmusic.getAudio());
-
             context.startActivity(intentMusicPlaying);
         }
     }
