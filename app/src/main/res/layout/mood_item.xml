@@ -19,7 +19,7 @@
             android:id="@+id/mood_label"
             android:gravity="center"
             android:background="@color/primary"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_below="@id/mood_image"/>
     </RelativeLayout>
 
