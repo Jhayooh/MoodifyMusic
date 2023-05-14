@@ -6,7 +6,9 @@
     tools:context=".PlaylistFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/head_bar" android:id="@+id/head_bar"/>
+    <include
+        android:id="@+id/head_bar"
+        layout="@layout/head_bar" />
 
 
 </FrameLayout>
