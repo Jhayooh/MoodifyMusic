@@ -39,6 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/searchView"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_margin="8dp"
         app:queryHint="Search Mood..."
         android:layout_below="@id/head_bar"
