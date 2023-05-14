@@ -2,6 +2,7 @@ package com.example.moodifymusic;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SearchFragment#newInstance} factory method to
@@ -18,7 +28,9 @@ import android.widget.TextView;
  */
 public class SearchFragment extends Fragment {
     private TextView textView;
-    private RecyclerView sRecyclerView;
+    private List<Mood> mMoodData;
+    private MoodAdapter moodAdapter;
+    private RecyclerView moodRecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,9 +76,36 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        sRecyclerView = view.findViewById(R.id.recyclerviewsearch);
-        sRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        moodRecyclerView = view.findViewById(R.id.recyclerviewsearch);
+        moodRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        int spacingInPixels = 10;
+        moodRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
         // Inflate the layout for this fragment
+        mMoodData = new ArrayList<>();
+        moodAdapter = new MoodAdapter(this.getContext(), (ArrayList<Mood>) mMoodData);
+        moodRecyclerView.setAdapter(moodAdapter);
+        initializeData();
         return view;
+    }
+
+    private void initializeData() {
+        DatabaseReference dbreff = FirebaseDatabase.getInstance().getReference("Mood");
+        dbreff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mMoodData.clear();
+                for (DataSnapshot moodSnapshot : snapshot.getChildren()){
+                    Mood mood = moodSnapshot.getValue(Mood.class);
+                    mMoodData.add(mood);
+                }
+                moodAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

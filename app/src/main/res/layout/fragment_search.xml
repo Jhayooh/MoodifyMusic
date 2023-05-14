@@ -24,8 +24,8 @@
             android:textSize="32sp" />
 
         <ImageView
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:id="@+id/music_image"
             android:background="@drawable/circle"
             android:layout_marginEnd="24dp"
@@ -33,9 +33,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="24dp"/>
     </RelativeLayout>
+
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="34dp"
         android:id="@+id/search_bar"
         android:layout_below="@+id/head_bar"
         android:layout_marginTop="12dp"
@@ -43,13 +44,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:padding="8dp"
-        android:text="hello"
+        android:textSize="16sp"
+        android:hint="@string/search_hint"
         android:background="@drawable/search_bg" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_below="@+id/search_bar"
         />
 
