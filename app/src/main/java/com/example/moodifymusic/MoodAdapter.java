@@ -10,10 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
     private ArrayList<Mood> moodItem;
     private Context context;
+
+    public void setFilteredList(ArrayList<Mood> filteredList){
+        this.moodItem = filteredList;
+        notifyDataSetChanged();
+    }
 
     public MoodAdapter(Context context, ArrayList<Mood> moodItem){
         this.context = context;
