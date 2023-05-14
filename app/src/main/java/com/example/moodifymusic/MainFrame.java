@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +13,14 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +40,7 @@ public class MainFrame extends AppCompatActivity {
     HomeFragment home = new HomeFragment();
     SearchFragment search = new SearchFragment();
     PlaylistFragment playlist = new PlaylistFragment();
+    ConstraintLayout layout;
 
     public static class getMyIntentMusicPlaying {
         private static Intent intent = new Intent();
@@ -66,6 +74,7 @@ public class MainFrame extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNav);
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, home).commit();
+        layout = findViewById(R.id.drawer_layout);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 
             @Override
@@ -95,6 +104,76 @@ public class MainFrame extends AppCompatActivity {
                 getApplicationContext().startActivity(getMyIntentMusicPlaying.getMyIntent(getApplicationContext()));
             }
         });
+
+        CreatepopupWindow();
+    }
+
+    private void CreatepopupWindow() {
+        LayoutInflater inflater= (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popUpView=inflater.inflate(R.layout.moodpopup,null);
+
+        int width = ViewGroup.LayoutParams.MATCH_PARENT;
+        int height = ViewGroup.LayoutParams.MATCH_PARENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popUpView, width, height, focusable);
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                popupWindow.showAtLocation(layout, Gravity.CENTER,0, 0);
+            }
+        });
+        Button energeticbtn, relaxingbtn, happybtn, sadbtn, motivationalbtn, chillbtn, romanticbtn;
+        energeticbtn = popUpView.findViewById(R.id.energetic);
+        relaxingbtn = popUpView.findViewById(R.id.relaxing);
+        happybtn = popUpView.findViewById(R.id.happy);
+        sadbtn = popUpView.findViewById(R.id.sad);
+        motivationalbtn = popUpView.findViewById(R.id.motivational);
+        chillbtn = popUpView.findViewById(R.id.chill);
+        romanticbtn = popUpView.findViewById(R.id.romantic);
+
+        energeticbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        relaxingbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        happybtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        sadbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        motivationalbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        chillbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+        romanticbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                popupWindow.dismiss();
+            }
+        });
+
     }
 
 }
