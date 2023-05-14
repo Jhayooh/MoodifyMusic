@@ -86,49 +86,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mTitle" />
 
-    <ImageView
-        android:id="@+id/skipback"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/circle"
-        android:src="@drawable/skipbackward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pause"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
+    <RelativeLayout
+        android:id="@+id/musicControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/mAuthor"
+        tools:layout_editor_absoluteX="-25dp">
 
-    <ImageView
-        android:id="@+id/pause"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/circle"
-        android:scaleType="centerInside"
-        android:src="@drawable/baseline_pause_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white" />
 
-    <ImageView
-        android:id="@+id/skipforward"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/circle"
-        android:scaleType="centerInside"
-        android:src="@drawable/skipforward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pause"
-        app:layout_constraintTop_toBottomOf="@+id/mAuthor" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_time"
+            android:layout_below="@id/seek_bar"
+            android:text="0:00"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seek_bar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="0:00"
+            android:textColor="@color/black" />
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/total_time"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/skipback"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/circle"
+                android:src="@drawable/skipbackward" />
+
+            <ImageView
+                android:id="@+id/skipforward"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/skipforward"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"/>
+
+            <ImageView
+                android:id="@+id/pause"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/baseline_pause_24"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
