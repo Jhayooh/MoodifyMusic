@@ -34,6 +34,7 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Music currentMusic = musicItemData.get(position);
+        holder.mTitleText.setText(currentMusic.getTitle());
         holder.bindTo(currentMusic);
     }
 
@@ -70,6 +71,9 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
             Music currentmusic = musicItemData.get(getAdapterPosition());
             Intent intentMusicPlaying = MainFrame.getMyIntentMusicPlaying.getMyIntent(context);
             intentMusicPlaying.putExtra("audio", currentmusic.getAudio());
+            intentMusicPlaying.putExtra("title", currentmusic.getTitle());
+            intentMusicPlaying.putExtra("author", currentmusic.getArtist());
+            intentMusicPlaying.putExtra("duration", currentmusic.getDuration());
             context.startActivity(intentMusicPlaying);
         }
     }
