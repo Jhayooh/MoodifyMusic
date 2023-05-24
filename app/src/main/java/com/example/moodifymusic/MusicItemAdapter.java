@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>{
-
+private final int limit = 10;
     private ArrayList<Music> musicItemData;
     private Context context;
 
@@ -40,7 +40,7 @@ class MusicItemAdapter extends RecyclerView.Adapter<MusicItemAdapter.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return musicItemData.size();
+        return Math.min(musicItemData.size(), limit);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
