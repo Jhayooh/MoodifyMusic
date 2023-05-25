@@ -66,6 +66,7 @@
             android:textStyle="bold"
             android:text="New to you"
             android:layout_marginStart="20dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
