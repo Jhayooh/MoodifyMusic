@@ -36,7 +36,7 @@ public class HomeMoodAdapter extends RecyclerView.Adapter<HomeMoodAdapter.ViewHo
         return Math.min(hMoodItem.size(), 10);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView moodLabel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -46,6 +46,11 @@ public class HomeMoodAdapter extends RecyclerView.Adapter<HomeMoodAdapter.ViewHo
         public void bindTo(Mood currentMood) {
             Mood currentmood = hMoodItem.get(getAdapterPosition());
             moodLabel.setText(currentMood.getMood());
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }
