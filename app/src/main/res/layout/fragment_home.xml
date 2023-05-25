@@ -1,43 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
-        android:id="@+id/head_bar">
-
-        <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="12dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Discover"
-            android:textSize="32sp" />
-
-        <ImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:id="@+id/music_image"
-            android:background="@drawable/circle"
-            android:layout_marginEnd="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="24dp"/>
-    </RelativeLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/head_bar" />
+        android:orientation="vertical">
+        <!-- TODO: Update blank fragment layout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:id="@+id/head_bar">
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Discover"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:id="@+id/music_image"
+                android:background="@drawable/circle"
+                android:layout_marginEnd="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="24dp"/>
+        </RelativeLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="202dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold"
+            android:text="Recommended for today"
+            android:layout_marginBottom="16dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerview2"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp"
+            android:textStyle="bold"
+            android:text="New to you"
+            android:layout_marginStart="20dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

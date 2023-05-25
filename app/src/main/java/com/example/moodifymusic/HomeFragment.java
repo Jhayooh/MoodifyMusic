@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +31,13 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-
+    ViewPager viewPager;
+    ArrayList<Integer> images = new ArrayList<>();
+    ViewPagerAdapter vAdapter;
     private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView2;
+    private List<Mood> hMoodList;
+    private HomeMoodAdapter hMoodAdapter;
     private List<Music> mMusicData;
     private MusicItemAdapter mAdapter;
 
@@ -76,7 +83,25 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeData() {
+        DatabaseReference dbreff_hm = FirebaseDatabase.getInstance().getReference("Mood");
         DatabaseReference dbreff = FirebaseDatabase.getInstance().getReference("Music");
+
+        dbreff_hm.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                hMoodList.clear();
+                for (DataSnapshot moodSnapshot:snapshot.getChildren()){
+                    Mood mood = moodSnapshot.getValue(Mood.class);
+                    hMoodList.add(mood);
+                }
+                hMoodAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         dbreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,12 +124,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        viewPager = view.findViewById(R.id.viewpager);
+        images.add(R.drawable.image1);
+        images.add(R.drawable.image2);
+        images.add(R.drawable.image3);
+        vAdapter = new ViewPagerAdapter(this.getContext(), images);
+        viewPager.setAdapter(vAdapter);
+
         mRecyclerView = view.findViewById(R.id.recyclerview);
+        mRecyclerView2 = view.findViewById(R.id.recyclerview2);
+        mRecyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Initialize the ArrayList that will contain the data.
+        hMoodList = new ArrayList<>();
         mMusicData = new ArrayList<>();
         // Initialize the adapter and set it to the RecyclerView.
+        hMoodAdapter = new HomeMoodAdapter(this.getContext(), (ArrayList<Mood>) hMoodList);
+        mRecyclerView2.setAdapter(hMoodAdapter);
         mAdapter = new MusicItemAdapter(this.getContext(), (ArrayList<Music>) mMusicData);
         mRecyclerView.setAdapter(mAdapter);
 
