@@ -14,6 +14,12 @@
         android:theme="@style/Theme.MoodifyMusic"
         tools:targetApi="31">
         <activity
+            android:name=".LoginFrame"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterFrame"
+            android:exported="false" />
+        <activity
             android:name=".QueueFrame"
             android:exported="false" />
         <activity

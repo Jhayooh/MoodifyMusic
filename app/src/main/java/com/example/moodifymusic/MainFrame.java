@@ -21,16 +21,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.IOException;
 
 public class MainFrame extends AppCompatActivity {
 
+    private Button btn_register;
+    private FirebaseAuth mAuth;
+    private TextView login;
+    private FirebaseUser mUser;
     private Intent myIntentMusicPlaying;
     DatabaseReference dbreff;
 
@@ -66,11 +73,23 @@ public class MainFrame extends AppCompatActivity {
             return mediaPlayer;
         }
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent1 = new Intent(getApplicationContext(), LoginFrame.class);
+            getApplicationContext().startActivity(intent1);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_frame);
+        mAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = findViewById(R.id.bottomNav);
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, home).commit();

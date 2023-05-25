@@ -24,10 +24,11 @@ public class QueueFrame extends AppCompatActivity {
         setContentView(R.layout.activity_queue_frame);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_queue_frame, container, false);
-
-        musicqueueRecycler = view.findViewById(R.id.mMusicqueueRecycler);
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.activity_queue_frame, container, false);
+//
+//        musicqueueRecycler = view.findViewById(R.id.mMusicqueueRecycler);
+//        return view;
+//    }
 }
