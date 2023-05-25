@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".MainActivity">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -15,13 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/bg_image2"
-        android:contentDescription="@string/bg_img" />
+        android:contentDescription="@string/bg_img" /> -->
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="222dp"
         android:src="@drawable/logomood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
         android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-21dp"
+        android:layout_marginTop="-16dp"
         android:fontFamily="@font/inter_semibold"
         android:shadowColor="#000000"
         android:shadowDx="0"
@@ -39,7 +40,7 @@
         android:shadowRadius="4"
         android:text="Music"
         android:textColor="#1B1C20"
-        android:textSize="48sp"
+        android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="@id/Title"
         app:layout_constraintStart_toStartOf="@id/Title"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
@@ -48,34 +49,33 @@
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         android:fontFamily="@font/inter_semibold"
         android:shadowColor="#000000"
         android:shadowDx="0"
         android:shadowDy="3"
         android:shadowRadius="4"
         android:text="Moodify"
-        android:textColor="@color/primary"
+        android:textColor="@color/accent"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <TextView
         android:id="@+id/startcontent"
-        android:layout_width="160dp"
+        android:layout_width="172dp"
         android:layout_height="54dp"
         android:fontFamily="@font/inter_light"
         android:text="Transform your mood with music"
         android:textAlignment="center"
         android:textColor="@color/secondary"
         android:textSize="18sp"
+        android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/getstarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,6 +90,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="72dp"/>
+        android:layout_marginBottom="72dp"/> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

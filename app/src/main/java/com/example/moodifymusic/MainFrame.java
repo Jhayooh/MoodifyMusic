@@ -82,15 +82,12 @@ public class MainFrame extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.nav_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, home).commit();
-                        item.getIcon().setColorFilter(getResources().getColor(R.color.accent), PorterDuff.Mode.SRC_IN);
                         return true;
                     case R.id.nav_search:
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, search).commit();
-                        item.getIcon().setColorFilter(getResources().getColor(R.color.accent), PorterDuff.Mode.SRC_IN);
                         return true;
                     case R.id.nav_playlist:
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, playlist).commit();
-                        item.getIcon().setColorFilter(getResources().getColor(R.color.accent), PorterDuff.Mode.SRC_IN);
                         return true;
                 }
                 return false;

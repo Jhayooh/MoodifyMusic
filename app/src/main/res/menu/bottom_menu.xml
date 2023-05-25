@@ -4,14 +4,17 @@
     <group tools:ignore="MenuTitle" >
         <item
             android:id="@+id/nav_home"
+            android:title="Home"
             android:icon="@drawable/home"/>
 
         <item
             android:id="@+id/nav_search"
+            android:title="Search"
             android:icon="@drawable/search"/>
 
         <item
             android:id="@+id/nav_playlist"
+            android:title="My Playlist"
             android:icon="@drawable/playlist"/>
     </group>
 </menu>
