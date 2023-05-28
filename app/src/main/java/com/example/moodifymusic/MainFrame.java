@@ -82,10 +82,8 @@ public class MainFrame extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             isLoggedIn = true;
-            Toast.makeText(this, "loggedIn", Toast.LENGTH_SHORT).show();
         } else {
             isLoggedIn = false;
-            Toast.makeText(this, "No Account", Toast.LENGTH_SHORT).show();
         }
     }
 
