@@ -8,18 +8,20 @@ public class Music implements Serializable {
     private String image;
     private String audio;
     private String duration;
+    private int id;
 
     // empty constructor
     public Music(){
 
     }
 
-    public Music(String title, String artist, String image, String audio, String duration){
+    public Music(String title, String artist, String image, String audio, String duration, int id){
         this.title = title;
         this.artist = artist;
         this.image = image;
         this.audio = audio;
         this.duration = duration;
+        this.id = id;
     }
 
     public String getTitle(){return title;}
@@ -47,5 +49,13 @@ public class Music implements Serializable {
     }
     public void setDuration() {
         this.duration = duration;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

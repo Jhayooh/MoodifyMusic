@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Mood {
     private String mood;
     private ArrayList<Integer> musics;
+    int id;
     public Mood() {
 
     }
-    public Mood(String mood, ArrayList<Integer> musics){
+    public Mood(String mood, ArrayList<Integer> musics, int id){
         this.mood = mood;
         this.musics = musics;
+        this.id = id;
     }
 
     public String getMood() {
@@ -27,5 +29,13 @@ public class Mood {
 
     public void setMusics(ArrayList<Integer> musics) {
         this.musics = musics;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

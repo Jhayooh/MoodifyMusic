@@ -21,16 +21,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.IOException;
 
 public class MainFrame extends AppCompatActivity {
 
+    private Button btn_register;
+    private FirebaseAuth mAuth;
+    private TextView login;
+    private FirebaseUser mUser;
     private Intent myIntentMusicPlaying;
     DatabaseReference dbreff;
 
@@ -41,6 +49,7 @@ public class MainFrame extends AppCompatActivity {
     SearchFragment search = new SearchFragment();
     PlaylistFragment playlist = new PlaylistFragment();
     ConstraintLayout layout;
+    public boolean isLoggedIn;
 
     public static class getMyIntentMusicPlaying {
         private static Intent intent = new Intent();
@@ -66,11 +75,25 @@ public class MainFrame extends AppCompatActivity {
             return mediaPlayer;
         }
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            isLoggedIn = true;
+            Toast.makeText(this, "loggedIn", Toast.LENGTH_SHORT).show();
+        } else {
+            isLoggedIn = false;
+            Toast.makeText(this, "No Account", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_frame);
+        mAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = findViewById(R.id.bottomNav);
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, home).commit();
