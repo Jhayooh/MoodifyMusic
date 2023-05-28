@@ -77,7 +77,6 @@ public class QueueFragment extends Fragment {
 
     private void initializeData() {
         DatabaseReference dbreff = FirebaseDatabase.getInstance().getReference("Music");
-
         dbreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,6 +117,7 @@ public class QueueFragment extends Fragment {
 
         musicAdapter = new MusicItemAdapter(this.getContext(), (ArrayList<Music>) mMusicData);
         musiqqueueRecycler.setAdapter(musicAdapter);
+
         initializeData();
 
         return view;
