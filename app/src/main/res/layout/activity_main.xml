@@ -65,12 +65,12 @@
         android:id="@+id/startcontent"
         android:layout_width="172dp"
         android:layout_height="54dp"
+        android:layout_marginBottom="90dp"
         android:fontFamily="@font/inter_light"
         android:text="Transform your mood with music"
         android:textAlignment="center"
         android:textColor="@color/secondary"
         android:textSize="18sp"
-        android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
