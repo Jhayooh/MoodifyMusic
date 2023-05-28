@@ -185,6 +185,7 @@ public class HomeFragment extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.recyclerview);
         mRecyclerView2 = view.findViewById(R.id.recyclerview2);
+
         mRecyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -194,6 +195,7 @@ public class HomeFragment extends Fragment {
         // Initialize the adapter and set it to the RecyclerView.
         hMoodAdapter = new HomeMoodAdapter(this.getContext(), (ArrayList<Mood>) hMoodList);
         mRecyclerView2.setAdapter(hMoodAdapter);
+
         mAdapter = new MusicItemAdapter(this.getContext(), (ArrayList<Music>) mMusicData);
         mRecyclerView.setAdapter(mAdapter);
 

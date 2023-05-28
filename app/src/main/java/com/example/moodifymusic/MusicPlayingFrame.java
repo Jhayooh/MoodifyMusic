@@ -27,7 +27,7 @@ public class MusicPlayingFrame extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     TextView titleTv, currentTimeTv, totalTimeTv, authorTv;
     SeekBar seekBar;
-    ImageView pausePlay, nextBtn, prevBtn, musicIcon;
+    ImageView pausePlay, nextBtn, prevBtn, musicIcon, hambergerMnu;
     ArrayList<Music> musicItemData;
     Music currentSong;
 
@@ -45,6 +45,16 @@ public class MusicPlayingFrame extends AppCompatActivity {
         nextBtn = findViewById(R.id.skipforward);
         prevBtn = findViewById(R.id.skipback);
         musicIcon = findViewById(R.id.albumart);
+        hambergerMnu = findViewById(R.id.hamburgerMenu);
+
+        hambergerMnu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MusicPlayingFrame.this, QueueFrame.class);
+                startActivity(intent);
+            }
+        });
+
 
         titleTv.setSelected(true);
 
