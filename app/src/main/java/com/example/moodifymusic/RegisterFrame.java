@@ -13,11 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterFrame extends AppCompatActivity {
 
@@ -63,10 +69,23 @@ public class RegisterFrame extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
+                                    DatabaseReference db = FirebaseDatabase.getInstance().getReference("Playlist");
+                                    DatabaseReference new_p = db.child(mAuth.getCurrentUser().getUid());
+                                    Map<String, Object> initData = new HashMap<>();
+                                    new_p.setValue(initData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+
+                                        }
+                                    });
                                     Toast.makeText(getApplicationContext(), "Account is created", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(RegisterFrame.this, LoginFrame.class);
+                                    getApplicationContext().startActivity(intent);
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(getApplicationContext(), "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                                    Log.e("Auth Error", task.getException().getMessage());
                                 }
                             }
                         });

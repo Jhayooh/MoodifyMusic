@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,6 +49,7 @@ public class MainFrame extends AppCompatActivity {
     SearchFragment search = new SearchFragment();
     PlaylistFragment playlist = new PlaylistFragment();
     ConstraintLayout layout;
+    public boolean isLoggedIn;
 
     public static class getMyIntentMusicPlaying {
         private static Intent intent = new Intent();
@@ -79,9 +81,11 @@ public class MainFrame extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent1 = new Intent(getApplicationContext(), LoginFrame.class);
-            getApplicationContext().startActivity(intent1);
-            finish();
+            isLoggedIn = true;
+            Toast.makeText(this, "loggedIn", Toast.LENGTH_SHORT).show();
+        } else {
+            isLoggedIn = false;
+            Toast.makeText(this, "No Account", Toast.LENGTH_SHORT).show();
         }
     }
 

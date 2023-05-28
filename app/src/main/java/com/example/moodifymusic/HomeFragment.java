@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    private ImageView imageView;
+    private ImageView imageView, moreButton;
+    private Spinner spinner;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ViewPager viewPager;
     ArrayList<Integer> images = new ArrayList<>();
     ViewPagerAdapter vAdapter;
@@ -141,12 +145,20 @@ public class HomeFragment extends Fragment {
         images.add(R.drawable.image3);
         vAdapter = new ViewPagerAdapter(this.getContext(), images);
         viewPager.setAdapter(vAdapter);
+
+
         imageView = view.findViewById(R.id.account);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(getContext(), imageView);
-                popupMenu.getMenuInflater().inflate(R.menu.account_menu, popupMenu.getMenu());
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser != null){
+                    popupMenu.getMenuInflater().inflate(R.menu.account_menu_logged, popupMenu.getMenu());
+                } else {
+                    popupMenu.getMenuInflater().inflate(R.menu.account_menu, popupMenu.getMenu());
+                }
+
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
@@ -159,6 +171,9 @@ public class HomeFragment extends Fragment {
                                 Intent intent2 = new Intent(getContext(), RegisterFrame.class);
                                 HomeFragment.this.startActivity(intent2);
                                 return true;
+                            case R.id.logout:
+                                mAuth.signOut();
+                                getActivity().recreate();
                         }
                         return true;
                     }
