@@ -106,8 +106,9 @@ private final int limit = 10;
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             FirebaseUser currentUser = mAuth.getCurrentUser();
+            Music currentmusic = musicItemData.get(getAdapterPosition());
             if (currentUser != null) {
-                MyDialog dialogFragment = new MyDialog();
+                MyDialog dialogFragment = MyDialog.newInstance(String.valueOf(currentmusic.getId()));
                 dialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), "dialog_fragment_tag");
                 return true;
             } else {
