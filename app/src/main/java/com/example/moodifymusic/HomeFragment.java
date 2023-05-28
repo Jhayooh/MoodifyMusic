@@ -2,6 +2,7 @@ package com.example.moodifymusic;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,14 +14,24 @@ import androidx.viewpager.widget.ViewPager;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +42,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    private ImageView imageView, moreButton;
+    private Spinner spinner;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ViewPager viewPager;
     ArrayList<Integer> images = new ArrayList<>();
     ViewPagerAdapter vAdapter;
@@ -124,12 +138,50 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         viewPager = view.findViewById(R.id.viewpager);
         images.add(R.drawable.image1);
         images.add(R.drawable.image2);
         images.add(R.drawable.image3);
         vAdapter = new ViewPagerAdapter(this.getContext(), images);
         viewPager.setAdapter(vAdapter);
+
+
+        imageView = view.findViewById(R.id.account);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), imageView);
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser != null){
+                    popupMenu.getMenuInflater().inflate(R.menu.account_menu_logged, popupMenu.getMenu());
+                } else {
+                    popupMenu.getMenuInflater().inflate(R.menu.account_menu, popupMenu.getMenu());
+                }
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.login:
+                                Intent intent1 = new Intent(getContext(), LoginFrame.class);
+                                HomeFragment.this.startActivity(intent1);
+                                return true;
+                            case R.id.register:
+                                Intent intent2 = new Intent(getContext(), RegisterFrame.class);
+                                HomeFragment.this.startActivity(intent2);
+                                return true;
+                            case R.id.logout:
+                                mAuth.signOut();
+                                getActivity().recreate();
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
 
         mRecyclerView = view.findViewById(R.id.recyclerview);
         mRecyclerView2 = view.findViewById(R.id.recyclerview2);

@@ -60,13 +60,13 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="27dp"
             />
+
         <ImageView
+            android:id="@+id/albumart"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/albumart"
-            android:background="@drawable/circle"
             android:layout_centerInParent="true"
-            />
+            android:background="@drawable/circle" />
 
     </RelativeLayout>
 
